@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { FlkDatePickerComponent } from './flk-datePicker.component';
 
@@ -6,7 +7,7 @@ import { FlkDatePickerComponent } from './flk-datePicker.component';
   declarations: [
   	FlkDatePickerComponent
   ],
-  imports: [],
+  imports: [CommonModule],
   providers: [],
   exports: [FlkDatePickerComponent]
 })
