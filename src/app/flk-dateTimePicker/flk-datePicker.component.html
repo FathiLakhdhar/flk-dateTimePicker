@@ -1,8 +1,11 @@
-<h1>DatePicker</h1>
-<ul>
-    <li>Start Date : {{startDate}}</li>
-    <li>End Date : {{endDate}}</li>
-    <li>holidays : {{holidays | json}}</li>
-    <li>weekHolidays : {{weekHolidays | json}}</li>
-</ul>
-<button (click)="click()">Click</button>
+<div class="fl-agenda">
+    <span class="fl-icon prev" (click)="nav('prev')"></span>
+    <span class="fl-icon next" (click)="nav('next')"></span>
+    <div *ngFor="let day of days; let last = last;" style="display: inline-table;">
+        <div class="fl-date" (click)="selectDay(day)">
+            <span class="fl-day">{{day.name}}</span>
+            <span class="fl-month-date">{{day.month + " " + day.date}}</span>
+        </div>
+        <div *ngIf="!last" class="margin-right"></div>
+    </div>
+</div>
