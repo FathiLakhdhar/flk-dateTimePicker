@@ -9,7 +9,7 @@ export class FlkDatePickerComponent implements OnInit {
   @Input() startDate: string;
   @Input() endDate: string;
   @Input() holidays: string[] = [];
-  @Input() weekHolidays: number[];//[0..6]
+  @Input() weekHolidays: number[] = [0];//[0..6] default Sunday is Holiday
 
   @Output() selected = new EventEmitter<any>();
 
@@ -33,6 +33,8 @@ export class FlkDatePickerComponent implements OnInit {
           throw "Error! [holidays] Invalid Date Format. Please Enter The Date In The Format 'YYYY-MM-DD'.";
       });
 
+      if(this.weekHolidays == null || this.weekHolidays.constructor != Array)
+        throw "Error! [weekHolidays] must be an array of number [0..6].";
       this._currentWeekDate = this._ISOFormatToDate(this.startDate);
       this._update();
     } catch (error) {
@@ -81,7 +83,7 @@ export class FlkDatePickerComponent implements OnInit {
   }
 
   private _isHoliday(date : Date) {
-    return this.holidays.includes(this._dateToISOFormat(date))
+    return this.holidays.includes(this._dateToISOFormat(date)) || this.weekHolidays.includes(date.getDay());
   }
 
   private _dateToISOFormat(date : Date) : string {
