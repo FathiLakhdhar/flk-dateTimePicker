@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 export class FlkDatePickerComponent implements OnInit {
   @Input() startDate: string;
   @Input() endDate: string;
-  @Input() holidays: string[];
+  @Input() holidays: string[] = [];
   @Input() weekHolidays: number[];//[0..6]
 
   @Output() selected = new EventEmitter<any>();
@@ -19,14 +19,21 @@ export class FlkDatePickerComponent implements OnInit {
   private _months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   private _currentWeekDate;
   private _nbWeek = 0;
+  private prevDisabled : boolean = true;
+  private nextDisabled : boolean = false;
   ngOnInit() {
     try {
       if (!this._validateDateFormat(this.startDate))
-        throw "Error! [startDate] Invalid Date Format. Please Enter The Date In The Format'YYYY-MM-DD'.";
+        throw "Error! [startDate] Invalid Date Format. Please Enter The Date In The Format 'YYYY-MM-DD'.";
       if (!this._validateDateFormat(this.endDate))
-        throw "Error! [endDate] Invalid Date Format. Please Enter The Date In The Format'YYYY-MM-DD'.";
+        throw "Error! [endDate] Invalid Date Format. Please Enter The Date In The Format 'YYYY-MM-DD'.";
 
-      this._currentWeekDate = new Date(this.startDate);
+      this.holidays.forEach(h=>{
+        if (!this._validateDateFormat(h))
+          throw "Error! [holidays] Invalid Date Format. Please Enter The Date In The Format 'YYYY-MM-DD'.";
+      });
+
+      this._currentWeekDate = this._ISOFormatToDate(this.startDate);
       this._update();
     } catch (error) {
       console.error(error);
@@ -41,12 +48,13 @@ export class FlkDatePickerComponent implements OnInit {
   nav(action: string) {
     if (action == "next") {
       this._nbWeek++;
+      this.prevDisabled = false;
       this._currentWeekDate.setDate(this._currentWeekDate.getDate() + 7);
       this._update();
     } else if (action == "prev") {
       if (this._nbWeek > 0) {
         this._nbWeek--;
-        if (this._nbWeek == 0) {/*disable prev btn*/ }
+        if (this._nbWeek == 0) { this.prevDisabled = true }
         this._currentWeekDate.setDate(this._currentWeekDate.getDate() - 7);
         this._update();
       }
@@ -61,12 +69,25 @@ export class FlkDatePickerComponent implements OnInit {
       this.days.push({
         name: e,
         month: this._months[idate.getMonth()],
-        date: idate.getDate()
+        date: idate.getDate(),
+        isHoliday : this._isHoliday(idate),
+        ISODate : this._dateToISOFormat(idate)
       });
     });
   }
 
   private _validateDateFormat(date: string) {
-    return date ? date.match(/^\d{4}\-\d{1,2}\-\d{1,2}$/) ? true : false : false;
+    return date ? date.match(/^\d{4}\-\d{2}\-\d{2}$/) ? true : false : false;
+  }
+
+  private _isHoliday(date : Date) {
+    return this.holidays.includes(this._dateToISOFormat(date))
+  }
+
+  private _dateToISOFormat(date : Date) : string {
+    return date.toISOString().split("T")[0];
+  }
+  private _ISOFormatToDate(date : string) : Date {
+    return new Date(date);
   }
 }

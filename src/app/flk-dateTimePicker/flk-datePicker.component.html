@@ -1,8 +1,8 @@
 <div class="fl-agenda">
-    <span class="fl-icon prev" (click)="nav('prev')"></span>
-    <span class="fl-icon next" (click)="nav('next')"></span>
+    <span class="fl-icon prev" [ngClass]="{'disabled': prevDisabled}" (click)="nav('prev')"></span>
+    <span class="fl-icon next" [ngClass]="{'disabled': nextDisabled}" (click)="nav('next')"></span>
     <div *ngFor="let day of days; let last = last;" style="display: inline-table;">
-        <div class="fl-date" (click)="selectDay(day)">
+        <div class="fl-date" (click)="selectDay(day)" [ngClass]="{'disabled': day.isHoliday}">
             <span class="fl-day">{{day.name}}</span>
             <span class="fl-month-date">{{day.month + " " + day.date}}</span>
         </div>
