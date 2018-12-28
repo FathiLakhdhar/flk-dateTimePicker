@@ -85,7 +85,7 @@ export class FlkDatePickerComponent implements OnInit {
   }
 
   private _isHoliday(date : Date) {
-    return this.holidays.includes(this._dateToISOFormat(date)) || this.weekHolidays.includes(date.getDay());
+    return this.holidays.includes(this._dateToISOFormat(date)) || this.weekHolidays.includes(date.getDay()) || this._ISOFormatToDate(this.endDate).getTime() < date.getTime();
   }
 
   private _dateToISOFormat(date : Date) : string {
