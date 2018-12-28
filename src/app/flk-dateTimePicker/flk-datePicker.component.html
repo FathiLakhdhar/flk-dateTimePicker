@@ -1,4 +1,4 @@
-<div class="fl-agenda">
+<div class="fl-agenda" [attr.data-week]="dataWeektxt" [attr.data-year]="dataYeartxt">
     <span class="fl-icon prev" [ngClass]="{'disabled': prevDisabled}" (click)="nav('prev')"></span>
     <span class="fl-icon next" [ngClass]="{'disabled': nextDisabled}" (click)="nav('next')"></span>
     <div *ngFor="let day of days; let last = last;" style="display: inline-table;">

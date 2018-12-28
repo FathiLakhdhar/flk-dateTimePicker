@@ -21,6 +21,8 @@ export class FlkDatePickerComponent implements OnInit {
   private _nbWeek = 0;
   private prevDisabled : boolean = true;
   private nextDisabled : boolean = false;
+  private dataWeektxt = "";
+  private dataYeartxt = "";
   ngOnInit() {
     try {
       if (!this._validateDateFormat(this.startDate))
@@ -78,6 +80,8 @@ export class FlkDatePickerComponent implements OnInit {
         ISODate : this._dateToISOFormat(idate)
       });
     });
+    this._updateAttrDataWeek();
+    this._updateAttrDataYear()
   }
 
   private _validateDateFormat(date: string) {
@@ -99,4 +103,10 @@ export class FlkDatePickerComponent implements OnInit {
     let currentWeekSaturday = (new Date(this._currentWeekDate.getTime())).setDate(this._currentWeekDate.getDate() + (6 - this._currentWeekDate.getDay()));
     return (this._ISOFormatToDate(this.endDate).getTime() >= currentWeekSunday && this._ISOFormatToDate(this.endDate).getTime() <= currentWeekSaturday); 
   }
+  private _updateAttrDataWeek() {
+    if (this._nbWeek == 1) this.dataWeektxt = "Next week";
+    else if (this._nbWeek == 0) this.dataWeektxt = "This week";
+    else this.dataWeektxt = this._nbWeek + " weeks out";
+  }
+  private _updateAttrDataYear() {this.dataYeartxt = this._currentWeekDate.getFullYear()}
 }
