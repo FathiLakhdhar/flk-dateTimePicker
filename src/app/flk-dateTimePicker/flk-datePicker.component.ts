@@ -49,14 +49,16 @@ export class FlkDatePickerComponent implements OnInit {
 
   nav(action: string) {
     if (action == "next") {
+      if (this._isLastWeek()){ this.nextDisabled = true; return }
       this._nbWeek++;
-      this.prevDisabled = false;
+      if (this._nbWeek == 1) { this.prevDisabled = false }
       this._currentWeekDate.setDate(this._currentWeekDate.getDate() + 7);
       this._update();
     } else if (action == "prev") {
       if (this._nbWeek > 0) {
         this._nbWeek--;
         if (this._nbWeek == 0) { this.prevDisabled = true }
+        if (this._isLastWeek()){ this.nextDisabled = false }
         this._currentWeekDate.setDate(this._currentWeekDate.getDate() - 7);
         this._update();
       }
@@ -91,5 +93,10 @@ export class FlkDatePickerComponent implements OnInit {
   }
   private _ISOFormatToDate(date : string) : Date {
     return new Date(date);
+  }
+  private _isLastWeek() : boolean {
+    let currentWeekSunday = (new Date(this._currentWeekDate.getTime())).setDate(this._currentWeekDate.getDate() - this._currentWeekDate.getDay());
+    let currentWeekSaturday = (new Date(this._currentWeekDate.getTime())).setDate(this._currentWeekDate.getDate() + (6 - this._currentWeekDate.getDay()));
+    return (this._ISOFormatToDate(this.endDate).getTime() >= currentWeekSunday && this._ISOFormatToDate(this.endDate).getTime() <= currentWeekSaturday); 
   }
 }
