@@ -109,4 +109,5 @@ export class FlkDatePickerComponent implements OnInit {
     else this.dataWeektxt = this._nbWeek + " weeks out";
   }
   private _updateAttrDataYear() {this.dataYeartxt = this._currentWeekDate.getFullYear()}
+  private isToday(IsoDate : string){ return this._dateToISOFormat(new Date()) == IsoDate}
 }

@@ -5,7 +5,7 @@
         <div 
         class="fl-date" 
         (click)="selectDay(day)" 
-        [ngClass]="{'disabled': day.isHoliday}"
+        [ngClass]="{'disabled': day.isHoliday, 'today': isToday(day.ISODate)}"
         [attr.data-date]="day.ISODate">
             <span class="fl-day">{{day.name}}</span>
             <span class="fl-month-date">{{day.month + " " + day.date}}</span>
