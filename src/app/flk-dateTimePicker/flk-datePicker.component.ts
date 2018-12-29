@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 @Component({
   selector: 'flk-datePicker',
   templateUrl: './flk-datePicker.component.html',
-  styleUrls: ['./flk-datePicker.component.css']
+  styleUrls: ['style.css', './flk-datePicker.component.css']
 })
 export class FlkDatePickerComponent implements OnInit {
   @Input() startDate: string;
