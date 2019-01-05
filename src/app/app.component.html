@@ -1,16 +1,21 @@
-<flk-datePicker
-  [startDate]="startDate"
-  [endDate]="endDate"
-  [holidays]="holidays"
-  [weekHolidays]="weekHolidays"
-  (selected)="selectDate($event)"
->
-</flk-datePicker>
-<flk-timePicker
-  [startTime]= "'00:00 am'"
-  [endTime]= "'12:00 pm'"
-  [duration]= "'00:30'"
-  [startEvery]= "'00:05'"
-  (selected)="selectTime($event)"
->
-</flk-timePicker>
+<div class="font-monospace center">
+  <h1>DatePicker Component</h1>
+  <flk-datePicker
+    [startDate]="startDate"
+    [endDate]="endDate"
+    [holidays]="holidays"
+    [weekHolidays]="weekHolidays"
+    (selected)="selectDate($event)"
+  >
+  </flk-datePicker>
+
+  <h1>TimePicker Component</h1>
+  <flk-timePicker
+    [startTime]= "'00:00 am'"
+    [endTime]= "'12:00 pm'"
+    [duration]= "'00:30'"
+    [startEvery]= "'00:05'"
+    (selected)="selectTime($event)"
+  >
+  </flk-timePicker>
+</div>

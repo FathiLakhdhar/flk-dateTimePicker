@@ -1,0 +1,11 @@
+.center {
+    text-align: center;
+}
+
+.font-monospace {
+    font-family: monospace;
+}
+
+flk-datePicker, flk-timePicker {
+    display: inline-block;
+}
