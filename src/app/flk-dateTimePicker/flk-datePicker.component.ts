@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
+import { FlkDate } from './model/flk-date';
+
 @Component({
   selector: 'flk-datePicker',
   templateUrl: './flk-datePicker.component.html',
@@ -11,10 +13,10 @@ export class FlkDatePickerComponent implements OnInit {
   @Input() holidays: string[] = [];
   @Input() weekHolidays: number[] = [0];//[0..6] default Sunday is Holiday
 
-  @Output() selected = new EventEmitter<any>();
+  @Output() selected = new EventEmitter<FlkDate>();
 
 
-  public days = [];
+  public days : FlkDate[] = [];
   private _week = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
   private _months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   private _currentWeekDate;
@@ -45,7 +47,7 @@ export class FlkDatePickerComponent implements OnInit {
   }
 
 
-  selectDay(day) {
+  selectDay(day: FlkDate) {
     this.selected.emit(day);
   }
 
