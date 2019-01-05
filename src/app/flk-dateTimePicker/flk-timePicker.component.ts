@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+import { FlkTime } from './model/flk-time';
+
 @Component({
     selector: 'flk-timePicker',
     templateUrl: './flk-timePicker.component.html',
@@ -11,9 +13,9 @@ export class FlkTimePickerComponent implements OnInit {
     @Input() duration: string;
     @Input() startEvery: string;
 
-    @Output() selected = new EventEmitter<any>();
+    @Output() selected = new EventEmitter<FlkTime>();
 
-    private times: any[] = []; // {heurs: "08", minutes: "30", mode: "am"}
+    private times: FlkTime[] = []; // {heurs: "08", minutes: "30", mode: "am"}
     private pas = 7;
     private _index = this.pas;
     private prevDisabled = true;
@@ -99,7 +101,7 @@ export class FlkTimePickerComponent implements OnInit {
         }
     }
 
-    private selectTime(time){
+    private selectTime(time: FlkTime){
         this.selected.emit(time);
     }
 
