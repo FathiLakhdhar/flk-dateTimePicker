@@ -45,9 +45,13 @@ blue : #00A2FF;
 .fl-timepicker>span {
   position: absolute;
   top: 37%;
-  font-size: 40px;
+  font-size: 25px;
   color: #00a2ff;
   cursor: pointer;
+}
+
+.fl-timepicker>span:before {
+  font-size: inherit;
 }
 
 .fl-timepicker>span.disabled {
@@ -61,6 +65,11 @@ blue : #00A2FF;
 
 .fl-timepicker>span:nth-of-type(2) {
   right: 0;
+}
+
+.fl-times{
+  display: inline-block; 
+  margin: 0 5px;
 }
 
 .fl-time {

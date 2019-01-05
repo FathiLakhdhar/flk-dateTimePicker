@@ -20,7 +20,11 @@ export class AppComponent implements OnInit{
       if(!this.holidays.includes(randomHoliday)) { this.holidays.push(randomHoliday) }
     }
   }
-  select(event : any){
-    console.log("Selected : ", event);
+  selectDate(event : any){
+    console.log("Date : ", event);
+  }
+
+  selectTime(event : any){
+    console.log("Time : ", event);
   }
 }

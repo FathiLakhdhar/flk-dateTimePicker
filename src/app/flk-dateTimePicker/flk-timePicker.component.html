@@ -1,15 +1,10 @@
 <div class="fl-timepicker">
-    <span class="flaticon-prev disabled"></span>
-    <span class="flaticon-next"></span>
-    <div class="times" style="display: inline-table;">
-        <div class="fl-time">
-            <span class="fl-heurs">12:00</span>
-            <span class="fl-am-pm">am</span>
-        </div>
-        <div class="margin-right"></div>
-        <div class="fl-time">
-            <span class="fl-heurs">12:00</span>
-            <span class="fl-am-pm">am</span>
+    <span class="flaticon-prev" [ngClass]="{'disabled': prevDisabled}" (click)="nav('prev')"></span>
+    <span class="flaticon-next" [ngClass]="{'disabled': nextDisabled}" (click)="nav('next')"></span>
+    <div class="fl-times" *ngFor="let time of times.slice(_index-pas, _index);">
+        <div class="fl-time"  (click)="selectTime(time)">
+            <span class="fl-heurs">{{time.heurs+':'+time.minutes}}</span>
+            <span class="fl-am-pm">{{time.mode}}</span>
         </div>
     </div>
 </div>

@@ -3,7 +3,14 @@
   [endDate]="endDate"
   [holidays]="holidays"
   [weekHolidays]="weekHolidays"
-  (selected)="select($event)"
+  (selected)="selectDate($event)"
 >
 </flk-datePicker>
-<flk-timePicker></flk-timePicker>
+<flk-timePicker
+  [startTime]= "'00:00 am'"
+  [endTime]= "'12:00 pm'"
+  [duration]= "'00:30'"
+  [startEvery]= "'00:05'"
+  (selected)="selectTime($event)"
+>
+</flk-timePicker>
