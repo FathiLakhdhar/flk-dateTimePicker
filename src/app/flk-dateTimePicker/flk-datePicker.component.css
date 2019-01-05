@@ -48,7 +48,7 @@ blue : #00A2FF;
 .fl-agenda>span {
   position: absolute;
   top: 40%;
-  font-size: 30px;
+  font-size: 25px;
   color: #00a2ff;
   cursor: pointer;
 }
@@ -68,6 +68,11 @@ blue : #00A2FF;
 
 .fl-agenda>span:nth-of-type(2) {
   right: 0;
+}
+
+.fl-dates {
+  display: inline-block; 
+  margin: 0 5px;
 }
 
 .fl-date {
