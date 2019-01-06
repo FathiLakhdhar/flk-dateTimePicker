@@ -6,6 +6,6 @@
     font-family: monospace;
 }
 
-flk-datePicker, flk-timePicker {
+flk-datePicker, flk-timePicker, flk-dateTimePicker {
     display: inline-block;
 }

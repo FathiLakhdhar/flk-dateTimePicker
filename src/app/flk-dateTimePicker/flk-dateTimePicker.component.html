@@ -1,0 +1,20 @@
+<div class="fl-datetimePicker" [attr.data-week]="dataWeektxt" [attr.data-year]="dataYeartxt">
+    <span class="flaticon-prev" [ngClass]="{'disabled': prevDisabled}" (click)="nav('prev')"></span>
+    <span class="flaticon-next" [ngClass]="{'disabled': nextDisabled}" (click)="nav('next')"></span>
+    <div>
+        <div class="fl-dates" *ngFor="let day of days">
+            <div class="fl-date" (click)="selectDay(day)" [ngClass]="{'disabled': day.isHoliday, 'today': isToday(day.ISODate)}" [attr.data-date]="day.ISODate">
+                <span class="fl-day">{{day.name}}</span>
+                <span class="fl-month-date">{{day.month + " " + day.date}}</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="fl-times" *ngFor="let time of times.slice(_index-pas, _index);">
+            <div class="fl-time" (click)="selectTime(time)">
+                <span class="fl-heurs">{{time.heurs+':'+time.minutes}}</span>
+                <span class="fl-am-pm">{{time.mode}}</span>
+            </div>
+        </div>
+    </div>
+</div>
